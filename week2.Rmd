@@ -1,0 +1,255 @@
+---
+title: "Week 2"
+author: "DJM"
+date: "21 January 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: "macros.js"
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+class: inverse, middle, center
+
+.bigger[
+# Struck by Lightning
+]
+
+---
+
+# Out of how many 
+
+1. If I ask "How many IU undergrads drank last weekend?" what is the right number for "out of how many"?
+
+1. What if I change the question to "How many freshman?"
+
+1. Of course the total undergrads and the total freshman that drank last weekend will be much different. 
+
+    a. What about the percentages? Similar? Different? 
+    
+    b. How much different? 
+    
+    c. To try to answer such a question, you need 4 numbers. What are they?
+
+???
+
+* Undergrads: 32794
+* Freshman: 8291
+* Simulate guesses for the four numbers
+
+---
+
+class: center, middle
+
+![](http://qwantz.com/comics/comic2-248.png)
+
+---
+
+# Who's clumping?
+    
+    
+.pull-left[    
+* 0's and 1's tend to "clump" together when random
+
+* The author calls this "Poisson clumping"
+
+* Can you think of some other examples where clumping happens? 
+
+* What about where people note it as significant of something?
+
+
+![:scale 75%](https://qph.fs.quoracdn.net/main-qimg-0247b0791b3fbf89ed12870fe0f66666)
+]
+
+.pull-right[
+![:scale 75%](https://alchetron.com/cdn/simon-denis-poisson-905bccdb-c8b8-44b4-80d8-2b2befd3c4b-resize-750.jpg)
+]
+
+---
+
+# Chapter 3
+
+.pull-left[
+![:scale 75%](https://pictures.abebooks.com/AMOTSCOUVERTS/1235960685_2.jpg)
+]
+
+.pull-right[
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/6sided_dice.jpg/600px-6sided_dice.jpg)
+]
+
+???
+
+* The Chevalier de Méré had a game 
+
+* at least one 6 in four rolls of a die
+
+* I apply for jobs at 3 companies. 
+
+* probabilities 1/3, 1/4, and 1/2 of getting
+
+* What are the chances I get no offers? 
+
+* What are the chances I get at least 1 offer?
+
+---
+
+background-image: url("gfx/538-map.png")
+background-position: center
+background-size: contain
+class: center, middle
+
+--
+
+.bigger[
+.darkblue[
+Probability of Trump winning
+ 
+  Wisconsin: 1/6  
+  Michigan: 1/5  
+  Pennsylvania: 1/6
+]
+]
+
+???
+
+* predicted probability of winning at least 1?
+* probability of all 3? (1/200)
+* What went wrong?
+* What's different between this and Jobs?
+
+---
+
+# Sagrada
+
+.pull-left[
+![](https://images-na.ssl-images-amazon.com/images/I/61HJgEyczyL._SL500_AC_SS350_.jpg)
+]
+
+.pull-right[
+How do I convince my wife she's not bad at games?
+
+She won 1 then lost 2.
+]
+
+---
+
+# Pot odds and sunk costs
+
+* p. 51, "[the money] belongs to the pot, not you"
+
+* There's $1000 in the pot
+
+* $250 of it came from your stack
+
+* The raise is $100
+
+* You have a 20% chance of winning if you call
+
+* What do you do?
+
+???
+
+Correct:
+Win = 1100 x .2 = 220
+Call and lose = -$100 x .8 = -80
+Fold = 0
+
+Wrong (doesn't matter, you still call):
+Win = 1100 x .2 = 220
+Call and lose = -350 x .8 = -120
+Fold = -250
+
+Makes you __more__ likely to bet (you bet if Ev > -stack x prob)
+
+What are some other sunk costs?
+
+---
+
+class: inverse, middle, center
+
+.bigger[
+# Drunkard's Walk
+]
+
+---
+
+# Exams
+
+This class has two exams. Suppose you get a 40 on the midterm. 
+
+1. Argue that you'll do better on the final.
+
+2. Suppose you get a 45 on the final. 
+
+    Will I be receptive to an argument that your exam scores don't reflect your ability? Why or why not?
+    
+1. Can you think of other examples of "regression to the mean"?
+
+---
+
+# Real exam scores
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+grades = read.csv("../../s301/2014 Fall/gradesAll.csv")
+library(tidyverse)
+library(cowplot)
+filter(grades, Final > 0) %>% 
+  ggplot(aes(Exam2, Final, color=Instructor)) + geom_point() + theme_cowplot() + 
+  geom_smooth(method="lm",se = FALSE) + theme(legend.position = "bottom") +
+  scale_color_brewer(palette='Set1')
+```
+
+---
+
+# Just mine
+
+```{r, echo=FALSE, message=FALSE, fig.align='center'}
+filter(grades, Instructor=="McDonald") %>% 
+  ggplot(aes(Exam2, Final, color=Instructor)) + geom_point() + theme_cowplot() + 
+  geom_smooth(method="lm",se = FALSE) + theme(legend.position = "bottom") +
+  scale_color_brewer(palette='Set1')
+```
+
+---
+
+# Black Monday
+
+.pull-left[
+* Monday 30 December 2019
+
+* Fire all the coaches!
+
+* Jay Gruden -- Won 9, 8, 7, and 7 is his last 4 before losing the first 5 games this year
+
+* Freddie Kitchens won 6 games in this, his only season
+
+* Ron Rivera got fired after winning 5/12 games this year, his 9th (3 good and 6 mediocre)
+
+* Jason Garrett went 8-8 in his 10th year
+
+* Pat Shurmur won 5 and 4 games in his only two seasons
+
+* 3 got the boot for being "mostly mediocre" over a long period (Gruden, Rivera, Garrett) while the other two had pretty poor records
+
+]
+
+.pull-right[
+![](https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/300px-National_Football_League_logo.svg.png)
+]
+
+???
+
+* Does this seem fair? 
+
+* Should the two short termers have gotten time to turn it around? 
+
+* Would they have gotten to "mostly mediocre" too or even "pretty good"? 
+
+* In what ways might the "law of large numbers" apply here?
