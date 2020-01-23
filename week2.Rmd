@@ -253,3 +253,56 @@ filter(grades, Instructor=="McDonald") %>%
 * Would they have gotten to "mostly mediocre" too or even "pretty good"? 
 
 * In what ways might the "law of large numbers" apply here?
+
+
+---
+
+# Kidney cancer 
+
+## US counties with the highest death rates
+
+```{r load-data, echo=FALSE}
+kid = read.csv(url('https://raw.githubusercontent.com/robinryder/BDA-kidney/master/KidneyCancerClean.csv'), skip=4)
+kid = kid %>% mutate(
+  deaths = dc+dc.2, avg_pop = (pop + pop.2)/2, deathrate = deaths / avg_pop,
+  low_rate = deathrate <= quantile(deathrate, .1),
+  high_rate = deathrate >= quantile(deathrate, .9)
+  ) %>% as_tibble() 
+```
+
+```{r plot-high, echo=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+library(usmap)
+plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'high_rate', color = NA) + 
+  scale_fill_manual(values = c("blue","orange")) + 
+  theme(legend.position = 'none')
+```
+
+---
+
+# Kidney cancer
+
+## US counties with the .green[lowest] death rates
+
+```{r plot-low, echo=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'low_rate', color = NA) + 
+  scale_fill_manual(values = c("blue","orange")) + 
+  theme(legend.position = 'none') 
+```
+
+---
+
+# County population
+
+```{r plot-pop, echo=FALSE, fig.width=12, fig.height=8, fig.align='center'}
+plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'avg_pop', color = NA) + 
+  scale_fill_viridis_c(trans = "log10", labels = scales::label_number_si()) +
+  theme(legend.title = element_blank(), legend.background = element_blank(),
+        legend.text = element_text(size=16), legend.position = 'right') +
+  guides(fill = guide_colourbar(barheight = 20))
+```

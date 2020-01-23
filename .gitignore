@@ -1,3 +1,5 @@
 .DS_Store
 .Rhistory
 *_files
+.Rproj.user
+*.Rproj
