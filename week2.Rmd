@@ -197,10 +197,10 @@ This class has two exams. Suppose you get a 40 on the midterm.
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-grades = read.csv("../../s301/2014 Fall/gradesAll.csv")
 library(tidyverse)
 library(cowplot)
-filter(grades, Final > 0) %>% 
+grades = read.csv("../../s301/2014 Fall/gradesAll.csv") %>% as_tibble()
+dplyr::filter(grades, Final > 0) %>% 
   ggplot(aes(Exam2, Final, color=Instructor)) + geom_point() + theme_cowplot() + 
   geom_smooth(method="lm",se = FALSE) + theme(legend.position = "bottom") +
   scale_color_brewer(palette='Set1')
@@ -211,7 +211,7 @@ filter(grades, Final > 0) %>%
 # Just mine
 
 ```{r, echo=FALSE, message=FALSE, fig.align='center'}
-filter(grades, Instructor=="McDonald") %>% 
+dplyr::filter(grades, Instructor=="McDonald") %>% 
   ggplot(aes(Exam2, Final, color=Instructor)) + geom_point() + theme_cowplot() + 
   geom_smooth(method="lm",se = FALSE) + theme(legend.position = "bottom") +
   scale_color_brewer(palette='Set1')
@@ -348,3 +348,7 @@ class: inverse, center, middle
 * Regression to the mean
 
 * Color scaling?
+
+* Expected value
+
+* Law of large numbers
