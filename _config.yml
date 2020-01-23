@@ -1,2 +1,5 @@
 theme: jekyll-theme-minimal
-logo: ../static/images/s100.jpg
+logo: s100.jpg
+
+title: Lecture slides for S100
+show_downloads: true
