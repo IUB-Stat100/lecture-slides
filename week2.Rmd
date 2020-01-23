@@ -294,6 +294,22 @@ plot_usmap(
 ```
 
 ---
+# County deathrates per 10000 people
+
+```{r plot-deathrate, echo=FALSE, fig.width=12, fig.height=8, fig.align='center'}
+kid = kid %>% mutate(deathrate = deathrate*10000)
+plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'deathrate', color = NA) + 
+  scale_fill_viridis_c() +
+  theme(legend.title = element_blank(), legend.background = element_blank(),
+        legend.text = element_text(size=16), legend.position = 'right') +
+  guides(fill = guide_colourbar(barheight = 20))
+```
+
+---
+
+
 
 # County population
 
@@ -306,3 +322,29 @@ plot_usmap(
         legend.text = element_text(size=16), legend.position = 'right') +
   guides(fill = guide_colourbar(barheight = 20))
 ```
+
+---
+class: inverse, center, middle
+
+# Weekly concepts
+
+
+---
+
+# Weekly concepts
+
+* "Out of how many"
+
+* Compare with rates, but be careful
+
+* Clumping/streaks
+
+* Independence/Dependence
+
+* Sunk costs
+
+* Decision making with uncertainty
+
+* Regression to the mean
+
+* Color scaling?
