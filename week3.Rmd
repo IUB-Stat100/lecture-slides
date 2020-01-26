@@ -216,6 +216,21 @@ $$p < 0.000000000001$$
 > Suppose that  I want to track how many calories I consume every day for a month. In the course of that month, I become sick for a few days and can only eat ice cream. Afterwards, I argue that I should not include those days in my analysis, because I was sick and not eating right. Would my study be biased? What type of bias?
 
 ---
+# Drake equation
+
+
+.center[.middle[
+![](https://exoplanets.nasa.gov/system/news_items/main_images/1350_drank-equation1280.jpg)
+]]
+
+
+???
+
+* no other life in universe: $f_e < 10^{-24}$
+* no other life in the galaxy: $f_e < 1 in 60 billion$
+
+
+---
 
 class: middle, center, inverse, bigger
 
@@ -251,13 +266,18 @@ g6 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_viridis_d() +
 plot_grid(g1,g2,g3,g4,g5,g6)
 ```
 
+
 ---
 
 # Check "Teaching stats: a bag of tricks"
 
 ---
 
+# More news
 
+.center[.bigger[
+[CNN poll: Sanders adds to momentum](https://www.cnn.com/2020/01/26/politics/bernie-sanders-new-hampshire-cnn-poll/index.html)
+]]
 
 ---
 class: inverse, center, middle
