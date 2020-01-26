@@ -56,8 +56,8 @@ purple = '#88398A'
 crime = read.csv("data/ucr-stats.csv", skip = 4) %>% as_tibble()
 crime_long = crime %>% pivot_longer(-Year)
 crime_long %>% filter(name != "United.States.Total") %>%
-  ggplot(aes(Year, value, color = name)) + geom_line() +
-  ylab('violent crimes per 100K people') + theme_cowplot() +
+  ggplot(aes(Year, value, color = name)) + geom_line(size=2) +
+  ylab('violent crimes per 100K people') + theme_cowplot(24) +
   theme(legend.title = element_blank()) +
   scale_color_viridis_d()
 ```
@@ -69,8 +69,8 @@ crime_long %>% filter(name != "United.States.Total") %>%
 
 ```{r ucr-national}
 crime_long %>% filter(name == "United.States.Total") %>%
-  ggplot(aes(Year, value)) + geom_line(color=purple) +
-  ylab('violent crimes per 100K people') + theme_cowplot() +
+  ggplot(aes(Year, value)) + geom_line(color=purple, size=2) +
+  ylab('violent crimes per 100K people') + theme_cowplot(24) +
   theme(legend.title = element_blank())
 ```
 
@@ -251,17 +251,17 @@ class: middle, center
 df = tibble(x = factor(1:5), y=0)
 
 g1 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer(palette = "Greys") +
-  theme_map(12) + ggtitle("Sequential greyscale") + theme(legend.position = 'none')
+  theme_map(24) + ggtitle("Sequential greyscale") + theme(legend.position = 'none')
 g2 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer() +
-  theme_map(12) + ggtitle("Sequential blue") + theme(legend.position = 'none')
+  theme_map(24) + ggtitle("Sequential blue") + theme(legend.position = 'none')
 g3 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_manual(values=terrain.colors(5)) +
-  theme_map(12) + ggtitle("Sequential terrain") + theme(legend.position = 'none')
+  theme_map(24) + ggtitle("Sequential terrain") + theme(legend.position = 'none')
 g4 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer(palette = 'RdBu') +
-  theme_map(12) + ggtitle("Diverging") + theme(legend.position = 'none')
+  theme_map(24) + ggtitle("Diverging") + theme(legend.position = 'none')
 g5 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer(palette = 'Set1') +
-  theme_map(12) + ggtitle("Unordered") + theme(legend.position = 'none')
+  theme_map(24) + ggtitle("Unordered") + theme(legend.position = 'none')
 g6 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_viridis_d() +
-  theme_map(12) + ggtitle("Colorblind safe") + theme(legend.position = 'none')
+  theme_map(24) + ggtitle("Colorblind safe") + theme(legend.position = 'none')
 
 plot_grid(g1,g2,g3,g4,g5,g6)
 ```
@@ -269,7 +269,32 @@ plot_grid(g1,g2,g3,g4,g5,g6)
 
 ---
 
-# Check "Teaching stats: a bag of tricks"
+# Mile run
+
+
+```{r mile-run}
+load("data/mile.rda")
+mile_trunc = filter(mile, Year < 1950,.preserve = TRUE) %>%
+  mutate(Gender = fct_recode(Gender, Male="Male", Female="Female"))
+
+ggplot(mile_trunc, aes(x=Year, y=Time, color=Gender)) + geom_line(size=2) + 
+  scale_color_manual(values = c(purple, "darkgreen"), drop=FALSE) +
+  scale_y_time(labels = function(l) strftime(l, "%M:%S")) + theme_cowplot(24) +
+  coord_cartesian(xlim=c(1850,2005), ylim=c(220, 300))
+```
+
+---
+
+# Mile run
+
+
+```{r mile-run-2}
+ggplot(mile, aes(x=Year, y=Time, color=Gender)) + geom_line(size=2) + 
+  scale_color_manual(values = c(purple, "darkgreen"), drop=FALSE) +
+  scale_y_time(labels = function(l) strftime(l, "%M:%S")) + theme_cowplot(24) +
+    coord_cartesian(xlim=c(1850,2005), ylim=c(220, 300))
+```
+
 
 ---
 

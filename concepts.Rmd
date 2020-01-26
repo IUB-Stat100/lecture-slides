@@ -1,0 +1,38 @@
+---
+title: "Stat100 Concepts"
+author: "DJM"
+date: "As of: `r Sys.Date()`"
+output: pdf_document
+---
+
+
+Out of how many
+: Numbers are magnitudes. It often helps to interpret if we convert these to ratios. For example, rather than knowing the number of murders in a city it may help to compare to the population of the city (murders per 100,000 residents, say).
+
+Compare with rates, but be careful
+: Related to "out of how many", it's often more useful to examine rates. But these can be counterintuitive if "how many" is relatively small.
+
+Clumping/streaks
+: Pure random process produce streaks or clumps. This isn't necessarily a sign of some thing real. Think a coin that lands heads 5 times in a row out of 10 or a roulette wheel that lands on "odds" 6 times.
+
+Independence/Dependence
+: It's easy to calculate the probabilities of independent events all occurring: just multiply. But be careful to make sure the events are independent!
+
+Sunk costs
+: Be wary of making decisions based on past decisions you can't change. Don't bet in poker based on past losses. Don't stay with your significant other just because you've been together for a while.
+
+Decision making with uncertainty
+: Try to determine the utility you'll earn for each possible outcome. How likely are those outcomes? Make the decision with a higher expected utility.
+
+Regression to the mean
+: Other things equal, performance below the average is likely to be followed by relatively higher performance. Performance above the average is likely to be followed by relatively lower performance.
+
+Color scaling
+: 
+
+Expected value
+: Mathematically, the sum of all potential values weighted by the probability of seeing those values. For example, the expected number of heads in 2 flips of a fair coin is
+$$EV = 0\times \frac{1}{4} + 1\times \frac{2}{4} + 2\times \frac{1}{4} = 1$$
+
+Law of large numbers
+: As you repeat a process over and over and over forever, the running average will get closer and closer to the expected value.
