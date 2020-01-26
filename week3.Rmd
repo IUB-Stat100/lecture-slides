@@ -1,0 +1,290 @@
+---
+title: "Week 3"
+author: "DJM"
+date: "28 January 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: "macros.js"
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+class: inverse, middle, center
+
+.bigger[
+# Struck by Lightning
+]
+
+---
+
+# News example
+
+<iframe src="https://www.npr.org/player/embed/779987957/780107097" width="100%" height="290" frameborder="0" scrolling="no" title="NPR embedded audio player"></iframe>
+
+
+### More details
+
+https://www.itv.com/goodmorningbritain/news/school-nativity-role-job-prediction
+
+---
+
+# Media bias
+
+Did the author do a good job of convincing you that politicians and media inflate the prevalence of homicide? 
+
+Briefly explain why or why not.
+
+
+--
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo=FALSE, fig.width = 12, fig.height = 7, fig.align = 'center', cache=TRUE, 
+  autodep=TRUE, message=FALSE, warning=FALSE)
+library(tidyverse)
+library(cowplot)
+purple = '#88398A'
+```
+
+```{r ucr-plot, fig.height=6, fig.align='center'}
+crime = read.csv("data/ucr-stats.csv", skip = 4) %>% as_tibble()
+crime_long = crime %>% pivot_longer(-Year)
+crime_long %>% filter(name != "United.States.Total") %>%
+  ggplot(aes(Year, value, color = name)) + geom_line() +
+  ylab('violent crimes per 100K people') + theme_cowplot() +
+  theme(legend.title = element_blank()) +
+  scale_color_viridis_d()
+```
+
+---
+
+# National
+
+
+```{r ucr-national}
+crime_long %>% filter(name == "United.States.Total") %>%
+  ggplot(aes(Year, value)) + geom_line(color=purple) +
+  ylab('violent crimes per 100K people') + theme_cowplot() +
+  theme(legend.title = element_blank())
+```
+
+---
+
+class: middle, center
+
+
+<a href="https://www.journalism.org/2013/03/17/the-changing-tv-news-landscape/12-traffic-weather-sports-fill-40-percent-of-local-newscasts-studied/"><img width="900" height="600" src="https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?w=627" class="attachment-large size-large" alt="Traffic, Weather and Sports Fill 40% of the Local Newscasts Studied" srcset="https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png 900w, https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?resize=300,164 300w, https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?resize=160,87 160w, https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?resize=200,109 200w, https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?resize=260,142 260w, https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?resize=310,169 310w, https://www.journalism.org/wp-content/uploads/sites/8/2013/03/12-Traffic-Weather-Sports-Fill-40-percent-Of-Local-Newscasts-Studied.png?resize=420,229 420w" sizes="(max-width: 900px) 200vw, 900px" /></a>
+
+
+---
+
+## Incarceration
+
+
+The US, Canada and India currently has 655, 33 and 114 incarcerated persons per 100,000 persons.
+
+Rank the countries in order according to their absolute numbers of incarcerated people. 
+
+The current populations are: 
+    
+  - US, 329 million; 
+  - Canada, 38 million; 
+  - India, 1.4 billion.
+
+---
+
+```{r prison-pop}
+## See "https://en.wikipedia.org/wiki/List_of_countries_by_incarceration_rate") and
+## https://www.prisonstudies.org/highest-to-lowest/prison_population_rate
+prison = read_csv("data/prison-rate.csv", col_names = TRUE, trim_ws = TRUE) %>%
+  mutate(Country=Title, Rate = as.numeric(Rate), Ranking=NULL,  Title=NULL)
+DT::datatable(prison, options = list(pageLength=12), height = "600")
+```
+
+
+---
+class: middle, center
+
+<iframe width="1120" height="630" src="https://www.youtube.com/embed/oUs1uvsz0Ok?end=189" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+---
+
+# Global warming
+
+![](https://i.dailymail.co.uk/i/pix/2013/03/16/article-2294560-18B8846F000005DC-184_634x427.jpg)
+
+
+[__Daily Mail__ The Great Green Con no. 1: The hard proof that finally shows global warming forecasts that are costing you billions were WRONG all along  ](https://www.dailymail.co.uk/news/article-2294560/The-great-green-1-The-hard-proof-finally-shows-global-warming-forecasts-costing-billions-WRONG-along.html)
+
+
+---
+
+class: middle, center
+
+![:scale 50%](https://www.economist.com/img/b/1280/1240/85/sites/default/files/images/print-edition/20130330_STC334_1.png)
+
+---
+
+<iframe scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" style="display: initial; margin: 0 auto;" src="https://cbhighcharts2019.s3.eu-west-2.amazonaws.com/CMIP6/historical_timeseries_obs_cmip5_cmip6.html" width="900px" height="500px"></iframe><span style="display:block; height:22px; max-width:800px;"><a href="https://www.carbonbrief.org"><img src="https://s3.eu-west-2.amazonaws.com/cbhighcharts2019/cb-logo-highcharts.svg" style="width: 22px; height: 22px; margin-top: 2px; margin-bottom: 2px; float:right; background-repeat: no-repeat; background-size: contain;"/>
+
+[CMIP6: the next generation of climate models explained (12 Dec. 2019)](https://www.carbonbrief.org/cmip6-the-next-generation-of-climate-models-explained)
+---
+
+# Ignore the Extremely Improbable.  
+
+What does this have to do with utility functions? 
+
+Does understanding how utility functions work help make sense of this principle?
+
+Is this always a good idea?
+
+.pull-left[
+![](https://thebulletin.org/wp-content/uploads/2014/11/Black_Swan_0-1024x683.jpg)
+]
+
+.pull-right[
+![:scale 50%](https://images-na.ssl-images-amazon.com/images/I/41w4yuUG1mL._SX322_BO1,204,203,200_.jpg)
+]
+
+---
+
+# Insurance
+
+.pull-left[
+If insurance companies always make money, should you have it?
+
+How does this relate to utility theory?
+
+Is money the only object?
+
+]
+
+.pull-right[
+![](https://www.geico.com/public/layout_images/homepage/design6/gecko-side.jpg)
+]
+
+---
+
+# P-values
+
+.pull-left[
+* What are p-values?
+
+* Turtle on a fence post
+
+* How do we determine if something is "improbable enough"?
+
+* $p< 0.05$
+
+* Physics v. others
+]
+
+.pull-right[
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/eric_tank/2678855518" title="Post Turtle...the original one. All the other ripped off shots came from here."><img src="https://live.staticflickr.com/3128/2678855518_bd00f849d0_w.jpg" width="400" height="300" alt="Post Turtle...the original one. All the other ripped off shots came from here."></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+]
+
+---
+
+# Higgs boson
+
+<blockquote cite="Wikipedia">To conclude that a new particle has been found, particle physicists require that the statistical analysis of two independent particle detectors each indicate that there is lesser than a one-in-a-million chance that the observed decay signatures are due to just background random Standard Model events.</blockquote>
+
+$$p < 0.000000000001$$
+
+.center[
+![:scale 30%](https://static.scientificamerican.com/sciam/cache/file/C6A4681D-D118-4110-A5F70193A971D28A_source.jpg?w=590&h=800&BEB9B7E8-BF77-442E-97C5AB3061F31548)
+]
+
+
+---
+
+# Bias
+
+* sampling bias 
+
+* reporting bias 
+
+--
+
+> Suppose that  I want to track how many calories I consume every day for a month. In the course of that month, I become sick for a few days and can only eat ice cream. Afterwards, I argue that I should not include those days in my analysis, because I was sick and not eating right. Would my study be biased? What type of bias?
+
+---
+
+class: middle, center, inverse, bigger
+
+# Data Visualization
+
+---
+
+class: middle, center
+
+# [Return of some slides](https://iub-stat100.github.io/lecture-slides/week2.html#13)
+
+
+---
+
+# Colorspaces 
+
+```{r colorspace}
+df = tibble(x = factor(1:5), y=0)
+
+g1 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer(palette = "Greys") +
+  theme_map(12) + ggtitle("Sequential greyscale") + theme(legend.position = 'none')
+g2 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer() +
+  theme_map(12) + ggtitle("Sequential blue") + theme(legend.position = 'none')
+g3 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_manual(values=terrain.colors(5)) +
+  theme_map(12) + ggtitle("Sequential terrain") + theme(legend.position = 'none')
+g4 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer(palette = 'RdBu') +
+  theme_map(12) + ggtitle("Diverging") + theme(legend.position = 'none')
+g5 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_brewer(palette = 'Set1') +
+  theme_map(12) + ggtitle("Unordered") + theme(legend.position = 'none')
+g6 = ggplot(df, aes(x,y,fill=x)) + geom_tile() + scale_fill_viridis_d() +
+  theme_map(12) + ggtitle("Colorblind safe") + theme(legend.position = 'none')
+
+plot_grid(g1,g2,g3,g4,g5,g6)
+```
+
+---
+
+# Check "Teaching stats: a bag of tricks"
+
+---
+
+
+
+---
+class: inverse, center, middle
+
+# Weekly concepts
+
+
+---
+
+# Weekly concepts
+
+* "Out of how many"
+
+* Compare with rates, but be careful
+
+* Clumping/streaks
+
+* Independence/Dependence
+
+* Sunk costs
+
+* Decision making with uncertainty
+
+* Regression to the mean
+
+* Color scaling?
+
+* Expected value
+
+* Law of large numbers
