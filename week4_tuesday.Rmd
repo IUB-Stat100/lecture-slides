@@ -1,0 +1,143 @@
+---
+title: "Week 4, Tuesday"
+author: "AJW"
+date: "04 February 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: "macros.js"
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+class: inverse, middle, center
+
+.bigger[
+# Simpson's Paradox - Something Isn't Right
+]
+
+---
+
+# Economics example  - (1)  Original Article
+
+<iframe src="ajw_pdfs/nytimes1.pdf" width="100%" height="500" frameborder="0" scrolling="yes" title="NYTimes on Income"></iframe>
+
+---
+
+# Economics example - (2)  Critique
+
+<iframe src="ajw_pdfs/nas.pdf" width="100%" height="500" frameborder="0" scrolling="yes" title="New American Statesman Take"></iframe>
+
+---
+
+# Economics example - (3)  Response
+
+<iframe src="ajw_pdfs/nytimes2.pdf" width="100%" height="500" frameborder="0" scrolling="yes" title="NYTimes Follow Up"></iframe>
+
+
+---
+
+# Medical Example - (1)  Setup
+
+* One of the examples on the Wikipedia page for Simpson's Paradox
+
+* Gotten from a BMJ article
+
+* Looking at kidney stone procedures - some focus on cost to NHS
+
+* Two procedures (risky/safe)
+
+* Two groups (large/small)
+
+
+---
+
+# Medical Example - (2)  BMJ Article
+
+<iframe src="ajw_pdfs/bmj.pdf" height="500" width="100%" scrolling="yes"></iframe>
+
+
+---
+
+#Medical Example - (3)  Data
+
+<iframe src="https://en.wikipedia.org/wiki/Simpson%27s_paradox#Kidney_stone_treatment" height="500" width="100%" scrolling="yes"></iframe>
+
+---
+
+# Titanic Example
+
+<iframe src="https://medium.com/@nikhilborkar/the-simpsons-paradox-and-where-to-find-them-cfcec6c2d8b3" height="500" width="100%" scrolling="yes"></iframe>
+
+
+---
+
+# Educational Example  - (1)  Setup
+
+* My favorite example (I teach in almost every class)
+
+* Also on Wikipedia (it is the textbook example)
+
+* UCBerkeley Graduate Admissions by Gender
+
+* Apparent bias against women
+
+* Bias disappears when looking within departments
+
+---
+
+# Educational Example  - (2)  Science Article
+
+<iframe src="ajw_pdfs/science.pdf" height="500" width="100%" scrolling="yes"></iframe>
+
+
+---
+
+# Educational Example  - (3)  Data
+
+<iframe src="https://en.wikipedia.org/wiki/Simpson%27s_paradox#UC_Berkeley_gender_bias" height="500" width="100%" scrolling="yes"></iframe>
+
+
+---
+
+# Business Examples
+
+<iframe src="ajw_pdfs/wagner.pdf" height="500" width="100%" scrolling="yes"></iframe>
+
+
+---
+
+# Wrap-up News Article
+
+<iframe src="https://www.brookings.edu/blog/social-mobility-memos/2015/07/29/when-average-isnt-good-enough-simpsons-paradox-in-education-and-earnings/" width="100%" height="500" frameborder="0" scrolling="yes" title="Brookings on Simpson's Paradox"></iframe>
+
+
+---
+
+
+class: inverse, center, middle
+
+# Dailly concepts
+
+
+---
+
+# Daily concepts
+
+* Conditional vs marginal
+
+* Reversal of trends can happen
+
+* Unit of analysis matters
+
+* Balance in a study matters
+
+* Look for nuance and completeness in reports
+
+* Ask obvious questions of easy stories
+

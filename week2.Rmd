@@ -49,6 +49,7 @@ class: center, middle
 
 ![](http://qwantz.com/comics/comic2-248.png)
 
+
 ---
 
 # Who's clumping?
