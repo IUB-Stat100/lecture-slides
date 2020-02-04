@@ -1,0 +1,125 @@
+---
+title: "Week 4"
+author: "DJM"
+date: "6 February 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+class: inverse, middle, center
+
+.bigger[
+# Struck by Lightning
+]
+
+
+---
+
+# More news
+
+.center[.bigger[
+[CNN poll: Sanders adds to momentum](https://www.cnn.com/2020/01/26/politics/bernie-sanders-new-hampshire-cnn-poll/index.html)
+]]
+
+---
+
+# Momentum
+
+[Iowa polling average](https://projects.fivethirtyeight.com/polls/president-primary-d/iowa/)
+
+---
+
+# Hypothesis testing (in class exercise 1)
+
+
+
+---
+
+# P-values
+
+.pull-left[
+* What are p-values?
+
+* Turtle on a fence post
+
+* How do we determine if something is "improbable enough"?
+
+* $p< 0.05$
+
+* Physics v. others
+]
+
+.pull-right[
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/eric_tank/2678855518" title="Post Turtle...the original one. All the other ripped off shots came from here."><img src="https://live.staticflickr.com/3128/2678855518_bd00f849d0_w.jpg" width="400" height="300" alt="Post Turtle...the original one. All the other ripped off shots came from here."></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+]
+
+
+
+
+---
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Frequency of the phrase &quot;marginally significant&quot; against p-value, with explanatory notes <a href="http://t.co/2aNY3ls0ZH">pic.twitter.com/2aNY3ls0ZH</a></p>&mdash; Matthew Hankins (@mc_hankins) <a href="https://twitter.com/mc_hankins/status/396757476558643200?ref_src=twsrc%5Etfw">November 2, 2013</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+# Margin of error in polls
+
+.pull-left[
+* A poll was taken online to determine whether people supported Net Neutrality. 
+
+* It was reported that 64% of people support NN, with a margin of error of 2.03%. 
+
+* Given that there were N=2340 people who took part in the poll, where did this margin of error come from?
+]
+
+.pull-right[
+![](https://publicradio1-wpengine.netdna-ssl.com/newscut/files/legacy/content_images/PP_graphics_NPR_5981_10_25_10.005.jpg)
+]
+
+---
+
+# Ugly charts
+
+![:scale 85%](https://junkcharts.typepad.com/.a/6a00d8341e992c53ef01b8d085c17e970c-pi)
+
+---
+
+# How to make ugly charts
+
+.pull-left[
+![](https://cdn.tutsplus.com/vector/uploads/legacy/tuts/69_Quality_Bar/Picture-26.jpg)
+]
+
+.pull-right[
+[Instructions here](https://design.tutsplus.com/tutorials/turn-a-boring-bar-graph-into-a-3d-masterpiece--vector-537)
+]
+
+---
+class: inverse, center, middle
+
+# Weekly concepts
+
+
+---
+
+# Weekly concepts
+
+* Simpson's paradox
+
+* p-value
+
+* hypothesis test
+
+* margin of error
+
+* A graph: what's your point?
+

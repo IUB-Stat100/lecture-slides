@@ -28,7 +28,7 @@ Regression to the mean
 : Other things equal, performance below the average is likely to be followed by relatively higher performance. Performance above the average is likely to be followed by relatively lower performance.
 
 Color scaling
-: 
+: Be aware of the point you're trying to make. Is it apparent? Be aware of colorblindness (about 10% of men and 4% of women).
 
 Expected value
 : Mathematically, the sum of all potential values weighted by the probability of seeing those values. For example, the expected number of heads in 2 flips of a fair coin is
@@ -36,3 +36,27 @@ $$EV = 0\times \frac{1}{4} + 1\times \frac{2}{4} + 2\times \frac{1}{4} = 1$$
 
 Law of large numbers
 : As you repeat a process over and over and over forever, the running average will get closer and closer to the expected value.
+
+Simpson's paradox
+: a trend appears in several different groups of data but disappears or reverses when these groups are combined
+
+Hypothesis test
+: if the _null hypothesis_ is true, would we expect to see data like this? If yes, then stick with the status quo. If no, then we reject the null in favor of the _alternative_.
+
+Null hypothesis
+: The current state of our understanding. The presumed truth. The thing we want to falsify.
+
+Alternative hypothesis
+: The thing we wish to prove. Think _null_ $=$ innocent, _alternative_ $=$ guilty.
+
+P-value
+: Given that the null is true, what is the probability of our observed data, or something more extreme
+
+Statistical significance
+: if the p-value is "small enough", we call the effect "statistically significant"
+
+Margin of error
+: we have an estimate of something (say a poll that shows 30% support), but how much might that estimate vary? This range is the "margin of error"
+
+Graphics
+: scaling, coloring, axes, percentages, etc. Does this graphic make the point clearly? Does it obscure alternative interpretations to manipulate?
