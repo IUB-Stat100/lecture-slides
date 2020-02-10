@@ -1,0 +1,81 @@
+---
+title: "Week 4"
+author: "DJM"
+date: "11 February 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+class: middle, center
+
+## Reminder: Class on Thursday is next door
+
+Also, don't forget to do your news article before Spring break.
+
+---
+
+# Today's news
+
+
+
+.center[.bigger[
+[How deadly will it get?](https://www.nytimes.com/interactive/2020/world/asia/china-coronavirus-contain.html#virulence)
+]]
+
+---
+
+class: inverse, middle, center
+
+.bigger[
+# Struck by Lightning - The End
+]
+
+
+---
+
+# Today's news
+
+
+.center[
+[How much football is there?](https://fivethirtyeight.com/features/how-much-football-is-even-in-a-football-broadcast/)
+
+![:scale 75%](https://fivethirtyeight.com/wp-content/uploads/2020/01/goldsberry-SUPER-BOWL-0131-1-2.png?w=2048)
+]
+
+---
+
+class: inverse, middle, center
+
+.bigger[
+# The Signal and The Noise - The Beginning
+]
+
+---
+class: inverse, center, middle
+
+# Weekly concepts
+
+
+---
+
+# Weekly concepts
+
+* Simpson's paradox
+
+* p-value
+
+* hypothesis test
+
+* margin of error
+
+* A graph: what's your point?
+

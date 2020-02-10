@@ -36,6 +36,7 @@ class: inverse, middle, center
 
 [Iowa polling average](https://projects.fivethirtyeight.com/polls/president-primary-d/iowa/)
 
+
 ---
 
 # Hypothesis testing (in class exercise 1)
