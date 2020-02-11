@@ -1,5 +1,5 @@
 ---
-title: "Week 4"
+title: "Week 5"
 author: "DJM"
 date: "11 February 2020"
 output:
@@ -240,13 +240,4 @@ class: inverse, center, middle
 
 # Weekly concepts
 
-* Simpson's paradox
-
-* p-value
-
-* hypothesis test
-
-* margin of error
-
-* A graph: what's your point?
 
