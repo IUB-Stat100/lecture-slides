@@ -1,0 +1,59 @@
+---
+title: "Week 5"
+author: "DJM"
+date: "11 February 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+
+# Key ingredients for science
+
+<blockquote cite="NYTimes">...some researchers who specialize in studying diseases that spill over from animals to humans have expressed frustration about conducting discussions about scientific claims without the life breath of science: publicly available data and accounts of how the research was done that have been vetted by other scientists.</blockquote>
+
+.pull-left[.center[.middle[
+[Pangolins and Coronavirus](https://www.nytimes.com/2020/02/10/science/pangolin-coronavirus.html?smtyp=cur&smid=fb-nytimes&fbclid=IwAR22kUpILsje8S1NUSFf3uZmBbceVpn80Pw_1np4i_ddeVGjLoBNw1ovMjA)
+]]]
+
+.pull-right[
+![](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fassets.change.org%2Fphotos%2F1%2Foy%2Fbh%2FYpOYbHKpsizEjfH-1600x900-noPad.jpg%3F1458743431&f=1&nofb=1)
+]
+
+
+
+
+---
+class: inverse, center, middle
+
+# Weekly concepts (last week)
+
+
+---
+
+# Weekly concepts (last week)
+
+* Proportionality principle
+
+* Sample space
+
+* Foxy forecasting
+
+* Reproducible research
+
+* Peer review
+
+* Mean vs Median
+
+---
+
+# Today's news
+

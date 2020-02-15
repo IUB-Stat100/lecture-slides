@@ -60,3 +60,21 @@ Margin of error
 
 Graphics
 : scaling, coloring, axes, percentages, etc. Does this graphic make the point clearly? Does it obscure alternative interpretations to manipulate?
+
+Proportionality principle
+: If various alternatives are equally likely, and then some event is observed, the updated probabilities for the alternatives are proportional to the probabilities that the observed event _would_ have occurred under those alternatives.
+
+Sample space
+: An enumeration of the possible outcomes of a process.
+
+Foxy forecasting
+: drawing on a wide variety of experiences and evidence to make predictions rather than using the lens of a single guiding idea
+
+Reproducible research
+: Work which can be easily replicated by another researcher or group by taking in the original data and running a series of well-described codes
+
+Peer review
+: The process by which other experts evaluate and ascertain whether the results described can be widely accepted within a research community as valid
+
+Mean vs Median
+: The mean or average is the sum of all the observations divided by the number of observations. The median is the value that splits the data into two equal sized parts. The mean is influenced by very large or small values, outliers, while the median is not. The median is more _robust_ to abberant values.
