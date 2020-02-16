@@ -1,7 +1,7 @@
 ---
-title: "Week 5"
+title: "Week 6"
 author: "DJM"
-date: "11 February 2020"
+date: "18 February 2020"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -57,3 +57,46 @@ class: inverse, center, middle
 
 # Today's news
 
+[Return of COVID-19](https://www.nytimes.com/2020/02/13/world/asia/coronavirus-risk-interpreter.html?action=click&module=Top%20Stories&pgtype=Homepage)
+
+---
+
+# Hurricane tracks
+
+.pull-left[
+![](https://static01.nyt.com/images/2019/09/04/us/politics/04dc-trumpmap/merlin_160184952_b742ee1f-51f1-4722-8a8a-e52fa895b39e-superJumbo.jpg?quality=90&auto=webp)
+]
+
+.pull-right[
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">This was the originally projected path of the Hurricane in its early stages. As you can see, almost all models predicted it to go through Florida also hitting Georgia and Alabama. I accept the Fake News apologies! <a href="https://t.co/0uCT0Qvyo6">pic.twitter.com/0uCT0Qvyo6</a></p>&mdash; Donald J. Trump (@realDonaldTrump) <a href="https://twitter.com/realDonaldTrump/status/1169375550806351872?ref_src=twsrc%5Etfw">September 4, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+]
+
+---
+
+# All the figures
+
+[Timeseries of paths](https://www.nhc.noaa.gov/archive/2019/DORIAN_graphics.php?product=5day_cone_with_line)
+
+
+---
+
+# Forecast errors
+
+![](https://www.nhc.noaa.gov/verification/figs/ALtkerrtrd_sm.jpg)
+
+
+---
+
+# In class exercise
+
+
+
+
+
+
+---
+
+# Today's news
+
+
+[Chocolate and Cognition](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)

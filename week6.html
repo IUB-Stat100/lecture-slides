@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Week 6</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="DJM" />
+    <meta name="date" content="2020-02-18" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, bigger, title-slide
+
+# Week 6
+### DJM
+### 18 February 2020
+
+---
+
+
+
+# Key ingredients for science
+
+&lt;blockquote cite="NYTimes"&gt;...some researchers who specialize in studying diseases that spill over from animals to humans have expressed frustration about conducting discussions about scientific claims without the life breath of science: publicly available data and accounts of how the research was done that have been vetted by other scientists.&lt;/blockquote&gt;
+
+.pull-left[.center[.middle[
+[Pangolins and Coronavirus](https://www.nytimes.com/2020/02/10/science/pangolin-coronavirus.html?smtyp=cur&amp;smid=fb-nytimes&amp;fbclid=IwAR22kUpILsje8S1NUSFf3uZmBbceVpn80Pw_1np4i_ddeVGjLoBNw1ovMjA)
+]]]
+
+.pull-right[
+![](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fassets.change.org%2Fphotos%2F1%2Foy%2Fbh%2FYpOYbHKpsizEjfH-1600x900-noPad.jpg%3F1458743431&amp;f=1&amp;nofb=1)
+]
+
+
+
+
+---
+class: inverse, center, middle
+
+# Weekly concepts (last week)
+
+
+---
+
+# Weekly concepts (last week)
+
+* Proportionality principle
+
+* Sample space
+
+* Foxy forecasting
+
+* Reproducible research
+
+* Peer review
+
+* Mean vs Median
+
+---
+
+# Today's news
+
+[Return of COVID-19](https://www.nytimes.com/2020/02/13/world/asia/coronavirus-risk-interpreter.html?action=click&amp;module=Top%20Stories&amp;pgtype=Homepage)
+
+---
+
+# Hurricane tracks
+
+.pull-left[
+![](https://static01.nyt.com/images/2019/09/04/us/politics/04dc-trumpmap/merlin_160184952_b742ee1f-51f1-4722-8a8a-e52fa895b39e-superJumbo.jpg?quality=90&amp;auto=webp)
+]
+
+.pull-right[
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;This was the originally projected path of the Hurricane in its early stages. As you can see, almost all models predicted it to go through Florida also hitting Georgia and Alabama. I accept the Fake News apologies! &lt;a href="https://t.co/0uCT0Qvyo6"&gt;pic.twitter.com/0uCT0Qvyo6&lt;/a&gt;&lt;/p&gt;&amp;mdash; Donald J. Trump (@realDonaldTrump) &lt;a href="https://twitter.com/realDonaldTrump/status/1169375550806351872?ref_src=twsrc%5Etfw"&gt;September 4, 2019&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+]
+
+---
+
+# All the figures
+
+[Timeseries of paths](https://www.nhc.noaa.gov/archive/2019/DORIAN_graphics.php?product=5day_cone_with_line)
+
+
+---
+
+# Forecast errors
+
+![](https://www.nhc.noaa.gov/verification/figs/ALtkerrtrd_sm.jpg)
+
+
+---
+
+# In class exercise
+
+
+
+
+
+
+---
+
+# Today's news
+
+
+[Chocolate and Cognition](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
