@@ -8,6 +8,9 @@
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/pymjs-1.3.2/pym.v1.js"></script>
+    <script src="libs/widgetframe-binding-0.3.1/widgetframe.js"></script>
     <link rel="stylesheet" href="extra.css" type="text/css" />
   </head>
   <body>
@@ -88,16 +91,132 @@ class: inverse, center, middle
 
 # Forecast errors
 
-![](https://www.nhc.noaa.gov/verification/figs/ALtkerrtrd_sm.jpg)
 
+.center[
+![:scale 65%](https://www.nhc.noaa.gov/verification/figs/ALtkerrtrd_sm.jpg)
+]
+
+---
+
+
+# Histogram
+
+&lt;img src="week6_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+
+.green[
+Source: Study conducted by George Loewenstein at CMU. Data consists of 64 married couples.
+]
 
 ---
 
 # In class exercise
 
+* In pairs, 
+  1. Guess the average (mean) beer consumption (in ounces) per day in the US
+  
+  2. Guess the median beer consumption (in ounces) per day in the US
+  
+  3. Draw a histogram (by hand), with ounces consumed per day on the x-axis and count/frequency on the y-axis. 
 
 
+--
 
+* Report your best guess for 
+  1. ounces of beer .green[YOU] consume per day (average) and 
+  
+  1. ounces of beer .green[YOUR FRIENDS] consume per day (average)
+
+---
+
+# Wet-biasing
+
+* Evidence in Chapter 4.
+
+* Who is being compared?
+
+* Why does the Weather Channel do something different that the government?
+
+* Is this a good idea?
+
+* Who produces more accurate forecasts?
+
+---
+
+# Power laws
+
+* The "Gutenberg-Richter" is an example of a "power-law" relationship
+
+* What is a power-law relationship?
+
+* What other phenomena have this relationship (approximately or exactly)?
+
+---
+
+# Over-fitting vs. Under-fitting
+
+
+.pull-left[
+* Bias
+
+* Variance
+
+* Complexity and quantity of data
+
+* Bias-Variance tradeoff
+]
+
+.pull-right[
+![](week6_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# Economic forecasting
+
+&lt;blockquote cite="Signal and the Noise, p. 200"&gt;Economic forecasts produced by the White House...have historically been among the least accurate of all.&lt;/blockquote&gt;
+
+* (regardless of party)
+
+* Why?
+
+* What are the incentives?
+
+---
+
+# Correlation vs. Causation
+
+&lt;blockquote&gt;From 1967 to 1997, the winner of the Super Bowl (specifically, whether the winner was from the original NFL or the original AFL) was strongly correlated with economic performance for the rest of the year.&lt;/blockquote&gt;
+
+
+--
+
+&lt;blockquote cite="My father in-law, on Monday"&gt;Chicago banned guns and has 1105 murders. Maine has no gun restrictions and only 100 murders.&lt;/blockquote&gt;
+
+--
+
+* What else is wrong about this statement in terms of other concepts we have discussed?
+
+---
+
+# Graphical model
+
+.pull-left[
+<div id="htmlwidget-dfb71ff2c79caa5de263" style="width:100%;height:400px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dfb71ff2c79caa5de263">{"x":{"url":"week6_files/figure-html//widgets/widget_unnamed-chunk-3.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+
+.pull-right[
+<div id="htmlwidget-18f9d86d88fa413e4246" style="width:100%;height:400px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-18f9d86d88fa413e4246">{"x":{"url":"week6_files/figure-html//widgets/widget_unnamed-chunk-4.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+# Graphical model
+<div id="htmlwidget-2793dabe7067dcca1983" style="width:100%;height:400px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2793dabe7067dcca1983">{"x":{"url":"week6_files/figure-html//widgets/widget_unnamed-chunk-5.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -106,6 +225,39 @@ class: inverse, center, middle
 
 
 [Chocolate and Cognition](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
+
+
+---
+class: inverse, center, middle
+
+# Weekly concepts
+
+
+---
+
+# Weekly concepts
+
+* Forecast horizon
+
+* Forecast uncertainty
+
+* Model averaging
+
+* Mean/Median
+
+* Histogram
+
+* Bias
+
+* Variance
+
+* Over-fitting and Under-fitting
+
+* Power law
+
+* Correlation vs. Causation
+
+* Hidden common causes
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
