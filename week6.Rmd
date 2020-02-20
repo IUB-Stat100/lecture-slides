@@ -126,6 +126,90 @@ Source: Study conducted by George Loewenstein at CMU. Data consists of 64 marrie
   1. ounces of beer .green[YOU] consume per day (average) and 
   
   1. ounces of beer .green[YOUR FRIENDS] consume per day (average)
+  
+  
+---
+
+# Beer results
+
+* 270 Million adults over 21 in the US
+
+* About 62% drink alcohol
+
+* Americans consume 24,245,000,000 litres per year
+
+* So the average among those who drink is something like `r round((24245*35.19) / (270*.62*365),2)`
+
+* In BC, beer is sold in "sleeves" which are approximately this amount
+
+---
+
+# Results from class
+
+```{r, echo=FALSE}
+personal = c(0,0,17, 20, 1,0,0,0,.1,0,0,24,0)
+friends = c(12,24,90,100,20,26,24,10,20,10,0,48,28)
+gmean = c(34,20,36,20,27)
+gmed = c(28,12,20,0,25)
+```
+
+* Guesses for mean: `r sort(gmean)`
+
+--
+
+* Guesses for median: `r sort(gmed)`
+
+* Everyone had median $<$ mean
+
+---
+
+# Typical histogram
+
+.center[
+![:scale 60%](gfx/beer_hist.jpg)
+]
+
+---
+
+# Personal consumption 1
+
+```{r, echo=FALSE,warning=FALSE,fig.width=12,fig.height=7,message=FALSE}
+tibble(personal) %>% 
+  ggplot(aes(personal)) + geom_histogram(aes(fill='orange')) +
+  scale_y_continuous(
+    breaks = 0:10,
+    limits=c(0,10), 
+    expand = expand_scale(0)) +
+  theme_cowplot(26) + theme(legend.position = 'none')
+```
+
+
+---
+
+
+# Personal consumption 2
+
+```{r, echo=FALSE,warning=FALSE,fig.width=12,fig.height=7,message=FALSE}
+tibble(personal) %>% filter(personal > 0) %>% 
+  ggplot(aes(personal)) + geom_histogram(aes(fill='orange')) +
+  scale_y_continuous(limits=c(0,10), expand = expand_scale(0),breaks=0:10) +
+  annotate(x=0,y=0,xend=0,yend=sum(personal==0),geom = "segment",color='blue')+
+  theme_cowplot(26) + theme(legend.position = 'none')
+```
+
+---
+
+# Issues 
+
+--
+
+* Real data: https://www.niaaa.nih.gov/procedures-obtaining-dataset
+
+* Survey of about 50,000 adults
+
+* Anyone with proper privacy controls can access it
+
+* I do not have proper controls
 
 ---
 
@@ -150,6 +234,23 @@ Source: Study conducted by George Loewenstein at CMU. Data consists of 64 marrie
 * What is a power-law relationship?
 
 * What other phenomena have this relationship (approximately or exactly)?
+
+
+---
+
+# Things people say are "power law"
+
+1. The frequency of occurrence of unique words in the novel Moby Dick by Herman Melville [44].
+1. The degrees (i.e., numbers of distinct interaction partners) of proteins in the partially known protein-interaction network of the yeast Saccharomyces cerevisiae [29].
+1. The degrees of metabolites in the metabolic network of the bacterium Escherichia coli [27].
+1. The degrees of nodes in the partially known network representation of the Internet at the level of autonomous systems for May 2006 [26]. 
+1. The number of calls received by customers of AT&T’s long distance telephone service in the United States during a single day [1, 5].
+1. The intensity of wars from 1816–1980 measured as the number of battle deaths per 10000 of the combined populations of the warring nations [54, 50].
+1. The severity of terrorist attacks worldwide from February 1968 to June 2006, measured as the number of deaths directly resulting [12].
+1. The number of bytes of data received as the result of individual web (HTTP) requests from computer users at a large research laboratory during a 24-hour period in June 1996 [69]. Roughly speaking this distribution represents the size distribution of web files transmitted over the Internet.
+1. The number of species per genus of mammals. This data set, compiled by Smith et al. [55], is composed primarily of species alive today but also includes some recently extinct species, where “recent” in this context means the last few tens of thousands of years.
+1. The numbers of sightings of birds of different species in the North American Breeding Bird Survey for 2003.
+1. The numbers of customers affected in electrical blackouts in the United States between 1984 and 2002 [44].
 
 ---
 
