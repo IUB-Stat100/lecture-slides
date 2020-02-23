@@ -1,7 +1,7 @@
 ---
 title: "Week 7"
 author: "DJM"
-date: "15 February 2020"
+date: "25 February 2020"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -154,6 +154,378 @@ ggplot(df, aes(x0=x,y0=y,r=rad,fill=lab)) + geom_circle(alpha=.6) +
 
 --
 
-$$P(A\cap B) = \frac{P(A\cap B)}{P(S)}$$
+$$P(A\cap B) = \frac{P(A\cap B)}{\color{red}{P(S)}}$$
+$$P(A\ |\ B) = \frac{P(A\cap B)}{\color{red}{P(B)}}$$
+$$P(B\ |\ A) = \frac{P(A\cap B)}{\color{red}{P(A)}}$$
+
+---
+
+# Bayes' Theorem
+
+.pull-left[
+
+* "Turns around" conditionals
+
+* Suppose we want
 $$P(A\ |\ B) = \frac{P(A\cap B)}{P(B)}$$
-$$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)}$$
+
+* But we know 
+$$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)} \Longrightarrow P(B\ |\ A) P(A) = P(A\cap B)$$
+
+--
+* Substitute:
+$$P(A\ |\ B) = \frac{\color{red}{P(A\cap B)}}{P(B)} = \frac{\color{red}{P(B\ |\ A) P(A)}}{P(B)}$$
+
+]
+
+.pull-right[.center[
+![]( https://imgs.xkcd.com/comics/seashell.png)
+]]
+
+---
+
+# What is a "Bayesian"?
+
+
+.pull-left[
+* Non-Bayesians view parameters as fixed
+
+* Bayesians view them as random
+
+* The Bayesian relies on beliefs 
+
+* The Non-Bayesian relies hypothetical replications
+
+* Nate Silver is a Bayesian
+
+* Bayesians use Bayes' Theorem
+]
+
+.pull-right[.center[
+![:scale 60%](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
+]
+]
+
+---
+
+# Example
+
+* I've argued that the probability of winning if you switch is 2/3 (not 1/2)
+
+* Let's simulate it
+
+```{r, fig.width=12, fig.height=6,fig.align='center'}
+monty <- function(){
+  door = sample(c(1,0,0), 3)
+  win = FALSE
+  if(sum(door[2:3]) > 0) win=TRUE
+  win
+}
+monty_sim = tibble(
+  sim = replicate(100, monty()), 
+  try = 1:100, prob = cumsum(sim)/try,
+  ci = 1.96*sqrt(prob*(1-prob)/try)) 
+monty_sim %>%
+  ggplot(aes(try, prob)) + geom_line(color='purple',size=2) +
+  ylab('relative freq of winning') + xlab('games played') +
+  geom_hline(yintercept = 2/3) +
+  geom_ribbon(aes(ymin=prob-ci,ymax=prob+ci), fill='purple', alpha=.2) +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     limits = c(0,1), expand=expand_scale(0)) +
+  geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
+```
+
+---
+
+# The frequentist
+
+* After 25 games, I won `r sum(monty_sim$sim[1:25])` times
+
+* This means, my guess for the probability of winning is `r round(monty_sim$prob[25]*100,0)`%.
+
+* How confident am I? Well, if I repeat this experiment over and over, I'm 95% confident that the __true__ chance of winning is 
+
+```{r}
+phat = monty_sim$prob[25]
+ciw = monty_sim$ci[25]
+```
+
+.center[.big[.purple[
+`r round(phat*100,0)`% $\pm$ `r round(ciw*100,0)`%
+]
+]
+]
+
+--
+
+* After 100 games, I won `r sum(monty_sim)` times
+
+* This means, my guess for the probability of winning is `r round(monty_sim$prob[100]*100,0)`%
+
+* How confident am I? Well, if I repeat this experiment over and over, I'm 95% confident that the __true__ chance of winning is 
+
+```{r}
+phat = monty_sim$prob[100]
+ciw = monty_sim$ci[100]
+```
+
+.center[.big[.purple[
+`r round(phat*100,0)`% $\pm$ `r round(ciw*100,0)`%
+]
+]
+]
+
+---
+
+# The Skeptical Bayesian
+
+* I haven't seen any data
+
+* I don't believe any of the garbage you told me about "better to switch"
+
+* I'm pretty sure it doesn't matter: I think the probability is 1/2, but I'm not certain
+
+--
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=50,shape2=50), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1))
+```
+
+---
+
+# Now we collect data (the same data)
+
+* You change your beliefs as you play
+
+* How do they change?
+
+```{r, fig.height=6,fig.width=10,fig.align='center'}
+monty_sim = monty_sim %>% 
+  mutate(as = try*prob + 50, bs = try-try*prob+50, 
+         ab = try*prob + 20, bb = try-try*prob + 10)
+monty_sim %>%
+  ggplot(aes(try, as/(as+bs))) + geom_line(color='purple',size=2) +
+  ylab('belief for prob of winning') + xlab('games played') +
+  geom_hline(yintercept = 2/3) +
+  geom_ribbon(aes(ymin=qbeta(.025,as,bs),ymax=qbeta(.975,as,bs)), 
+              fill='purple', alpha=.2) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     limits = c(0,1), expand=expand_scale(0)) +
+  geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
+```
+
+---
+
+# The skeptical Bayesian
+
+* After 25 games, I won `r sum(monty_sim$sim[1:25])` times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=50,shape2=50), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  stat_function(fun=dbeta, 
+                args = list(shape1=monty_sim$as[25],shape2=monty_sim$bs[25]), 
+                color='darkorange',
+                fill='darkorange',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('believed probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# The skeptical Bayesian
+
+* After 100 games, I won `r sum(monty_sim$sim[1:100])` times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=50,shape2=50), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  stat_function(fun=dbeta, 
+                args = list(shape1=monty_sim$as[100],shape2=monty_sim$bs[100]), 
+                color='darkorange',
+                fill='darkorange',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('believed probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# The Gullible Bayesian
+
+* I haven't seen any data
+
+* I believe everything Prof. McDonald says, he's infallible
+
+* I'm not sure it's .purple[exactly] 66%, but pretty close
+
+--
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=20,shape2=10), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# We collect data (the same data)
+
+* You change your beliefs as you play
+
+* How do they change?
+
+```{r, fig.height=6,fig.width=10,fig.align='center'}
+monty_sim %>%
+  ggplot(aes(try, ab/(ab+bb))) + geom_line(color='purple',size=2) +
+  ylab('belief for prob of winning') + xlab('games played') +
+  geom_hline(yintercept = 2/3) +
+  geom_ribbon(aes(ymin=qbeta(.025,ab,bb),ymax=qbeta(.975,ab,bb)), 
+              fill='purple', alpha=.2) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     limits = c(0,1), expand=expand_scale(0)) +
+  geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
+```
+
+
+---
+
+# The gullible Bayesian
+
+* After 25 games, I won `r sum(monty_sim$sim[1:25])` times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=20,shape2=10), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  stat_function(fun=dbeta, 
+                args = list(shape1=monty_sim$ab[25],shape2=monty_sim$bb[25]), 
+                color='darkorange',
+                fill='darkorange',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('believed probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# The gullible Bayesian
+
+* After 100 games, I won `r sum(monty_sim$sim[1:100])` times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=20,shape2=10), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  stat_function(fun=dbeta, 
+                args = list(shape1=monty_sim$ab[100],shape2=monty_sim$bb[100]), 
+                color='darkorange',
+                fill='darkorange',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('believed probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# Why is this called Bayesian?
+
+* It comes from the "updating" part
+
+* You start with a belief about $P(B)$
+
+* Data that you collect is $P(A\ |\ B)$
+
+* You want to incorporate the data, $A$, into your belief about $B$
+
+* So you use the Theorem to get $P(B\ |\ A)$
+
+---
+
+# Costs and benefits
+
++ Bayesian methods can deal with over-fitting
+
++ Bayesian methods can work well when there's not much data
+
++ Bayesian methods can work well when there's you have external information you want to incorporate
+
++ Some evidence that this "updating" mimics how people learn
+
++ Interpretation makes more sense
+
+- Strong incorrect beliefs are hard to overcome (bad bias)
+
+- No guarantees about the true parameter
+
+---
+
+# Revisiting the Kidney cancer map (highest rates)
+
+```{r}
+kid = read.csv(url('https://raw.githubusercontent.com/robinryder/BDA-kidney/master/KidneyCancerClean.csv'), skip=4)
+kid = kid %>% mutate(
+  deaths = dc+dc.2, avg_pop = (pop + pop.2)/2, deathrate = deaths / avg_pop,
+  low_rate = deathrate <= quantile(deathrate, .1),
+  high_rate = deathrate >= quantile(deathrate, .9),
+  ratebayes = (deaths + 15) / (avg_pop + 2e5),
+  lowbayes = ratebayes <= quantile(ratebayes, .1),
+  highbayes = ratebayes >= quantile(ratebayes, .9),
+  ) %>% as_tibble() 
+```
+
+```{r plot-high, echo=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+library(usmap)
+p1 = plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'high_rate', color = NA) + 
+  scale_fill_manual(values = c("blue","orange")) + 
+  theme(legend.position = 'none') +
+  ggtitle('Old version')
+p2 = plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'highbayes', color = NA) + 
+  scale_fill_manual(values = c("blue","orange")) + 
+  theme(legend.position = 'none') +
+  ggtitle('Bayesian version')
+plot_grid(p1,p2)
+```
+
+---
+
+# Revisiting the Kidney cancer map (lowest rates) 
+
+```{r plot-low, echo=FALSE, fig.width=12, fig.height=6, fig.align='center'}
+library(usmap)
+p1 = plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'low_rate', color = NA) + 
+  scale_fill_manual(values = c("blue","orange")) + 
+  theme(legend.position = 'none') +
+  ggtitle('Old version')
+p2 = plot_usmap(
+  'counties', data = kid, exclude = c("AK", "HI"), 
+  values = 'lowbayes', color = NA) + 
+  scale_fill_manual(values = c("blue","orange")) + 
+  theme(legend.position = 'none') +
+  ggtitle('Bayesian version')
+plot_grid(p1,p2)
+```

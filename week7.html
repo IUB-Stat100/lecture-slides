@@ -4,7 +4,7 @@
     <title>Week 7</title>
     <meta charset="utf-8" />
     <meta name="author" content="DJM" />
-    <meta name="date" content="2020-02-15" />
+    <meta name="date" content="2020-02-25" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/rladies-fonts.css" rel="stylesheet" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, bigger, title-slide
 
 # Week 7
 ### DJM
-### 15 February 2020
+### 25 February 2020
 
 ---
 
@@ -116,9 +116,236 @@ class: center, middle, inverse, bigger, title-slide
 
 --
 
-`$$P(A\cap B) = \frac{P(A\cap B)}{P(S)}$$`
+`$$P(A\cap B) = \frac{P(A\cap B)}{\color{red}{P(S)}}$$`
+`$$P(A\ |\ B) = \frac{P(A\cap B)}{\color{red}{P(B)}}$$`
+`$$P(B\ |\ A) = \frac{P(A\cap B)}{\color{red}{P(A)}}$$`
+
+---
+
+# Bayes' Theorem
+
+.pull-left[
+
+* "Turns around" conditionals
+
+* Suppose we want
 `$$P(A\ |\ B) = \frac{P(A\cap B)}{P(B)}$$`
-`$$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)}$$`
+
+* But we know 
+`$$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)} \Longrightarrow P(B\ |\ A) P(A) = P(A\cap B)$$`
+
+--
+* Substitute:
+`$$P(A\ |\ B) = \frac{\color{red}{P(A\cap B)}}{P(B)} = \frac{\color{red}{P(B\ |\ A) P(A)}}{P(B)}$$`
+
+]
+
+.pull-right[.center[
+![]( https://imgs.xkcd.com/comics/seashell.png)
+]]
+
+---
+
+# What is a "Bayesian"?
+
+
+.pull-left[
+* Non-Bayesians view parameters as fixed
+
+* Bayesians view them as random
+
+* The Bayesian relies on beliefs 
+
+* The Non-Bayesian relies hypothetical replications
+
+* Nate Silver is a Bayesian
+
+* Bayesians use Bayes' Theorem
+]
+
+.pull-right[.center[
+![:scale 60%](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
+]
+]
+
+---
+
+# Example
+
+* I've argued that the probability of winning if you switch is 2/3 (not 1/2)
+
+* Let's simulate it
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The frequentist
+
+* After 25 games, I won 18 times
+
+* This means, my guess for the probability of winning is 72%.
+
+* How confident am I? Well, if I repeat this experiment over and over, I'm 95% confident that the __true__ chance of winning is 
+
+
+
+.center[.big[.purple[
+72% `\(\pm\)` 18%
+]
+]
+]
+
+--
+
+* After 100 games, I won 5197.8119276 times
+
+* This means, my guess for the probability of winning is 65%
+
+* How confident am I? Well, if I repeat this experiment over and over, I'm 95% confident that the __true__ chance of winning is 
+
+
+
+.center[.big[.purple[
+65% `\(\pm\)` 9%
+]
+]
+]
+
+---
+
+# The Skeptical Bayesian
+
+* I haven't seen any data
+
+* I don't believe any of the garbage you told me about "better to switch"
+
+* I'm pretty sure it doesn't matter: I think the probability is 1/2, but I'm not certain
+
+--
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Now we collect data (the same data)
+
+* You change your beliefs as you play
+
+* How do they change?
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The skeptical Bayesian
+
+* After 25 games, I won 18 times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The skeptical Bayesian
+
+* After 100 games, I won 65 times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The Gullible Bayesian
+
+* I haven't seen any data
+
+* I believe everything Prof. McDonald says, he's infallible
+
+* I'm not sure it's .purple[exactly] 66%, but pretty close
+
+--
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# We collect data (the same data)
+
+* You change your beliefs as you play
+
+* How do they change?
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# The gullible Bayesian
+
+* After 25 games, I won 18 times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The gullible Bayesian
+
+* After 100 games, I won 65 times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Why is this called Bayesian?
+
+* It comes from the "updating" part
+
+* You start with a belief about `\(P(B)\)`
+
+* Data that you collect is `\(P(A\ |\ B)\)`
+
+* You want to incorporate the data, `\(A\)`, into your belief about `\(B\)`
+
+* So you use the Theorem to get `\(P(B\ |\ A)\)`
+
+---
+
+# Costs and benefits
+
++ Bayesian methods can deal with over-fitting
+
++ Bayesian methods can work well when there's not much data
+
++ Bayesian methods can work well when there's you have external information you want to incorporate
+
++ Some evidence that this "updating" mimics how people learn
+
++ Interpretation makes more sense
+
+- Strong incorrect beliefs are hard to overcome (bad bias)
+
+- No guarantees about the true parameter
+
+---
+
+# Revisiting the Kidney cancer map (highest rates)
+
+
+
+&lt;img src="week7_files/figure-html/plot-high-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Revisiting the Kidney cancer map (lowest rates) 
+
+&lt;img src="week7_files/figure-html/plot-low-1.png" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
