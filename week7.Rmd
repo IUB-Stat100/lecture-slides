@@ -1,0 +1,159 @@
+---
+title: "Week 7"
+author: "DJM"
+date: "15 February 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+
+# Today's news
+
+
+[Chocolate and Cognition](https://www.nejm.org/doi/full/10.1056/NEJMon1211064)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, autodep=TRUE,
+                  cache=TRUE)
+library(tidyverse)
+library(ggforce)
+library(cowplot)
+```
+
+
+---
+
+# For Thursday
+
+.center[.middle[
+# Bring a laptop
+]]
+
+---
+
+# Conditional probability
+
+.pull-left[
+* Monty Hall is an example of this (a deliberately challenging one)
+
+* S is called the __sample space__, the collection of possible outcomes
+
+* A and B are __events__, possible outcomes of interest
+
+* Examples:
+
+]
+
+.pull-right[
+```{r}
+df = tibble(x = c(-1.5,1), y=c(0,0), lab = LETTERS[1:2], rad=c(2,1.5))
+g=ggplot(df, aes(x0=x,y0=y,r=rad,fill=lab)) + geom_circle(alpha=.6) + 
+  coord_fixed() + theme_void(24) + scale_fill_brewer(palette='Dark2') +
+  theme(panel.border = element_rect(fill=NA,color="black",size=2),
+        legend.position = 'none') +
+  annotate('text', x=-3.5, y=1.75,label='S',size=16)
+g +  geom_text(aes(x,y,label=lab),size=16)
+```
+]
+
+---
+
+# Unions, intersections, complements
+
+$$A \cap B = A \textrm{ and } B$$
+
+
+```{r, fig.align='center'}
+g + annotate("text", x=0, y=0, label="A~intersect()~B", parse=TRUE,size=8)
+```
+
+---
+
+# Unions, intersections, complements
+
+$$A \cup B = A \textrm{ or } B$$
+
+
+```{r, fig.align='center'}
+ggplot(df, aes(x0=x,y0=y,r=rad)) + geom_circle(fill='yellow',color='yellow') + 
+  coord_fixed() + theme_void(24) + scale_fill_brewer(palette='Dark2') +
+  theme(panel.border = element_rect(fill=NA,color="black",size=2),
+        legend.position = 'none') +
+  annotate('text', x=-3.5, y=1.75,label='S',size=16) + 
+  annotate("text", x=0, y=0, label="A~union()~B", parse=TRUE,size=16)
+```
+
+---
+
+# Unions, intersections, complements
+
+$$(A \cup B)^c = \textrm{neither } A \textrm{ nor } B$$
+
+
+```{r, fig.align='center'}
+ggplot(df, aes(x0=x,y0=y,r=rad)) + geom_circle(fill='white',color='white') + 
+  coord_fixed() + theme_void(24) + scale_fill_brewer(palette='Dark2') +
+  theme(panel.border = element_rect(fill=NA,color="black",size=2),
+        legend.position = 'none', panel.background = element_rect(fill='yellow')) +
+  annotate('text', x=-3.5, y=1.75,label='S',size=16) + 
+  annotate("text", x=0, y=0, label="(A~union()~B)^c", parse=TRUE,size=16)
+```
+
+---
+
+# Conditional on A
+
+.big[
+$$P(B\ |\ A) = \textrm{Given that B happens, what is the probabality that A happens?}$$
+]
+
+```{r, fig.align='center'}
+ggplot(df, aes(x0=x,y0=y,r=rad,fill=lab)) + geom_circle(alpha=.6) + 
+  coord_fixed(xlim=c(-3.6,.6)) + theme_void(24) +
+  scale_fill_brewer(palette='Dark2') +
+  theme(legend.position = 'none') +
+  annotate("text", x=0, y=0, label="B | A", parse=FALSE,size=16) +
+  annotate("text", x=-1.5,y=0,label="S %=>% A", parse=TRUE,size=16)
+```
+
+---
+
+# Conditional on B
+
+.big[
+$$P(A\ |\ B) = \textrm{Given that A happens, what is the probabality that B happens?}$$
+]
+
+```{r, fig.align='center'}
+ggplot(df, aes(x0=x,y0=y,r=rad,fill=lab)) + geom_circle(alpha=.6) + 
+  coord_fixed(xlim=c(-.5,2.5)) + theme_void(24) +
+  scale_fill_brewer(palette='Dark2') +
+  theme(legend.position = 'none') +
+  annotate("text", x=0, y=0, label="A | B", parse=FALSE,size=16) +
+  annotate("text", x=1.5, y=0,label="S %=>% B", parse=TRUE,size=16)
+```
+
+---
+
+# Notes
+
+* Compare, $P(A \cap B)$ with $P(A\ |\ B)$ and $P(B\ |\ A)$
+
+* Each depends on $P(A \cap B)$
+
+* But it depends on "relative to what"
+
+--
+
+$$P(A\cap B) = \frac{P(A\cap B)}{P(S)}$$
+$$P(A\ |\ B) = \frac{P(A\cap B)}{P(B)}$$
+$$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)}$$
