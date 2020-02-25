@@ -40,6 +40,27 @@ library(cowplot)
 
 ---
 
+# Interpreting weather forecasts
+
+.center[
+[Today's forecast](https://forecast.weather.gov/MapClick.php?lat=39.07235960000003&lon=-86.45630949999997#.XlUkdC2ZM1I)
+]
+
+
+--
+
+.center[
+[A non-answer](https://www.weather.gov/ffc/pop)
+]
+
+--
+
+.center[
+[A more complete answer](https://web.archive.org/web/20150610085838/http://www.srh.noaa.gov/jax/?n=probability_of_precipitation)
+]
+
+---
+
 # Conditional probability
 
 .pull-left[
