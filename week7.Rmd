@@ -113,7 +113,7 @@ ggplot(df, aes(x0=x,y0=y,r=rad)) + geom_circle(fill='white',color='white') +
 # Conditional on A
 
 .big[
-$$P(B\ |\ A) = \textrm{Given that B happens, what is the probabality that A happens?}$$
+$$P(B\ |\ A) = \textrm{Given that A happens, what is the probabality that B happens?}$$
 ]
 
 ```{r, fig.align='center'}
@@ -130,7 +130,7 @@ ggplot(df, aes(x0=x,y0=y,r=rad,fill=lab)) + geom_circle(alpha=.6) +
 # Conditional on B
 
 .big[
-$$P(A\ |\ B) = \textrm{Given that A happens, what is the probabality that B happens?}$$
+$$P(A\ |\ B) = \textrm{Given that B happens, what is the probabality that A happens?}$$
 ]
 
 ```{r, fig.align='center'}
@@ -172,7 +172,6 @@ $$P(A\ |\ B) = \frac{P(A\cap B)}{P(B)}$$
 * But we know 
 $$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)} \Longrightarrow P(B\ |\ A) P(A) = P(A\cap B)$$
 
---
 * Substitute:
 $$P(A\ |\ B) = \frac{\color{red}{P(A\cap B)}}{P(B)} = \frac{\color{red}{P(B\ |\ A) P(A)}}{P(B)}$$
 
@@ -224,14 +223,15 @@ monty <- function(){
 monty_sim = tibble(
   sim = replicate(100, monty()), 
   try = 1:100, prob = cumsum(sim)/try,
-  ci = 1.96*sqrt(prob*(1-prob)/try)) 
+  ci = 1.96*sqrt(prob*(1-prob)/try))
 monty_sim %>%
   ggplot(aes(try, prob)) + geom_line(color='purple',size=2) +
   ylab('relative freq of winning') + xlab('games played') +
   geom_hline(yintercept = 2/3) +
   geom_ribbon(aes(ymin=prob-ci,ymax=prob+ci), fill='purple', alpha=.2) +
-    scale_y_continuous(labels = scales::percent_format(accuracy = 1),
-                     limits = c(0,1), expand=expand_scale(0)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     expand=expand_scale(0)) +
+  coord_cartesian(ylim=c(0,1)) + 
   geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
 ```
 
@@ -258,7 +258,7 @@ ciw = monty_sim$ci[25]
 
 --
 
-* After 100 games, I won `r sum(monty_sim)` times
+* After 100 games, I won `r sum(monty_sim$sim)` times
 
 * This means, my guess for the probability of winning is `r round(monty_sim$prob[100]*100,0)`%
 
@@ -314,7 +314,8 @@ monty_sim %>%
   geom_ribbon(aes(ymin=qbeta(.025,as,bs),ymax=qbeta(.975,as,bs)), 
               fill='purple', alpha=.2) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1),
-                     limits = c(0,1), expand=expand_scale(0)) +
+                     expand=expand_scale(0)) +
+  coord_cartesian(ylim=c(0,1)) +
   geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
 ```
 
@@ -397,7 +398,8 @@ monty_sim %>%
   geom_ribbon(aes(ymin=qbeta(.025,ab,bb),ymax=qbeta(.975,ab,bb)), 
               fill='purple', alpha=.2) +
   scale_y_continuous(labels = scales::percent_format(accuracy = 1),
-                     limits = c(0,1), expand=expand_scale(0)) +
+                     expand=expand_scale(0)) +
+  coord_cartesian(ylim=c(0,1)) + 
   geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
 ```
 
@@ -446,6 +448,92 @@ ggplot(data.frame(x=c(0, 1)), aes(x)) +
 
 ---
 
+# The clueless Bayesian
+
+* I haven't seen any data
+
+* I have no clue what to believe, I think it's all a trick
+
+* I can imagine the probability of winning being any value
+
+--
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=1,shape2=1), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# We collect data (the same data)
+
+* You change your beliefs as you play
+
+* How do they change?
+
+```{r, fig.height=6,fig.width=10,fig.align='center'}
+monty_sim = monty_sim %>% mutate(ua = try*prob + 1, ub = try-try*prob+1)
+ggplot(monty_sim, aes(try, ua/(ua+ub))) + geom_line(color='purple',size=2) +
+  ylab('belief for prob of winning') + xlab('games played') +
+  geom_hline(yintercept = 2/3) +
+  geom_ribbon(aes(ymin=qbeta(.025,ua,ub),ymax=qbeta(.975,ua,ub)), 
+              fill='purple', alpha=.2) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1),
+                     expand=expand_scale(0)) +
+  coord_cartesian(ylim=c(0,1)) + 
+  geom_segment(aes(x=try,y=0*sim,xend=try,yend=.1*sim)) + theme_cowplot(20)
+```
+
+
+---
+
+# The clueless Bayesian
+
+* After 25 games, I won `r sum(monty_sim$sim[1:25])` times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=1,shape2=1), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  stat_function(fun=dbeta, 
+                args = list(shape1=monty_sim$ua[25],shape2=monty_sim$ub[25]), 
+                color='darkorange',
+                fill='darkorange',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('believed probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+---
+
+# The clueless Bayesian
+
+* After 100 games, I won `r sum(monty_sim$sim[1:100])` times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+```{r, fig.width=10,fig.height=5,fig.align='center'}
+ggplot(data.frame(x=c(0, 1)), aes(x)) + 
+  stat_function(fun=dbeta, args = list(shape1=1,shape2=1), color='purple',
+                fill='purple',alpha=.2,geom='area') +
+  stat_function(fun=dbeta, 
+                args = list(shape1=monty_sim$ua[100],shape2=monty_sim$ub[100]), 
+                color='darkorange',
+                fill='darkorange',alpha=.2,geom='area') +
+  theme_cowplot(20) + xlab('believed probability of winning') + ylab('') +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  geom_vline(xintercept = 2/3)
+```
+
+
+---
+
 # Why is this called Bayesian?
 
 * It comes from the "updating" part
@@ -462,19 +550,19 @@ ggplot(data.frame(x=c(0, 1)), aes(x)) +
 
 # Costs and benefits
 
-+ Bayesian methods can deal with over-fitting
+(+) Bayesian methods can deal with over-fitting
 
-+ Bayesian methods can work well when there's not much data
+(+) Bayesian methods can work well when there's not much data
 
-+ Bayesian methods can work well when there's you have external information you want to incorporate
+(+) Bayesian methods can work well when there's you have external information you want to incorporate
 
-+ Some evidence that this "updating" mimics how people learn
+(+) Some evidence that this "updating" mimics how people learn
 
-+ Interpretation makes more sense
+(+) Interpretation makes more sense
 
-- Strong incorrect beliefs are hard to overcome (bad bias)
+(-) Strong incorrect beliefs are hard to overcome (bad bias)
 
-- No guarantees about the true parameter
+(-) No guarantees about the true parameter
 
 ---
 

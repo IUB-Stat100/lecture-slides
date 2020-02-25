@@ -78,3 +78,49 @@ Peer review
 
 Mean vs Median
 : The mean or average is the sum of all the observations divided by the number of observations. The median is the value that splits the data into two equal sized parts. The mean is influenced by very large or small values, outliers, while the median is not. The median is more _robust_ to abberant values.
+
+Forecast horizon
+: How far in the future you're making predictions. Generally, the farther ahead you try to predict, the more uncertain you are.
+
+Forecast uncertainty
+: When you make a prediction, you want to think about sources and sizes of possible errors. How accurate is your prediction?
+
+Model averaging
+: Combining information from lots of different sources to make a prediction. This is "foxy".
+
+Histogram
+: A graphical display of possible values along with the observed frequencies of those values. For example:
+
+```{r, fig.width=8, fig.height=4, out.width="4in", out.height="2in", fig.align='center', echo=FALSE, message=FALSE}
+library(tidyverse)
+kid = read.csv(url('https://raw.githubusercontent.com/robinryder/BDA-kidney/master/KidneyCancerClean.csv'), skip=4)
+kid = kid %>% mutate(
+  deaths = dc+dc.2, avg_pop = (pop + pop.2)/2, deathrate = deaths / avg_pop,
+  low_rate = deathrate <= quantile(deathrate, .1),
+  high_rate = deathrate >= quantile(deathrate, .9),
+  ratebayes = (deaths + 15) / (avg_pop + 2e5),
+  lowbayes = ratebayes <= quantile(ratebayes, .1),
+  highbayes = ratebayes >= quantile(ratebayes, .9),
+  ) %>% as_tibble() 
+kid %>% ggplot(aes(deathrate*10000)) + geom_histogram(fill='red', color='blue') +
+  cowplot::theme_cowplot() + scale_y_continuous(expand = expand_scale(0)) +
+  xlab('deaths per 10,000 inhabitants') + ylab('number of counties')
+```
+
+Bias
+: The difference between the truth and your estimate, on average.
+
+Variance
+: How much does your estimate vary around the truth, on average.
+
+Over-fitting and Under-fitting
+: Using too complex (over) or too simple (under) a method of analysis for the amount of data you have.
+
+Power law
+: a relationship wherein a relative change in one quantity results in a proportional relative change in the other quantity. For example, the side-length and the area of a square follow a power law relationship.
+
+Correlation vs. Causation
+: correlation measures the strength of a linear association between two quantities. Contrast this with the statement that manipulating one quantity results in a meaningful change in the other
+
+Hidden common causes
+: It is difficult to determine if one thing causes another purely through observation. We need to manipulate one to watch for an effect. If we simply observe, it is hard to rule out hidden factors that may cause both to change.

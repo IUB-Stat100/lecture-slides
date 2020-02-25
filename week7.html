@@ -89,7 +89,7 @@ class: center, middle, inverse, bigger, title-slide
 # Conditional on A
 
 .big[
-`$$P(B\ |\ A) = \textrm{Given that B happens, what is the probabality that A happens?}$$`
+`$$P(B\ |\ A) = \textrm{Given that A happens, what is the probabality that B happens?}$$`
 ]
 
 &lt;img src="week7_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
@@ -99,7 +99,7 @@ class: center, middle, inverse, bigger, title-slide
 # Conditional on B
 
 .big[
-`$$P(A\ |\ B) = \textrm{Given that A happens, what is the probabality that B happens?}$$`
+`$$P(A\ |\ B) = \textrm{Given that B happens, what is the probabality that A happens?}$$`
 ]
 
 &lt;img src="week7_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
@@ -134,7 +134,6 @@ class: center, middle, inverse, bigger, title-slide
 * But we know 
 `$$P(B\ |\ A) = \frac{P(A\cap B)}{P(A)} \Longrightarrow P(B\ |\ A) P(A) = P(A\cap B)$$`
 
---
 * Substitute:
 `$$P(A\ |\ B) = \frac{\color{red}{P(A\cap B)}}{P(B)} = \frac{\color{red}{P(B\ |\ A) P(A)}}{P(B)}$$`
 
@@ -198,7 +197,7 @@ class: center, middle, inverse, bigger, title-slide
 
 --
 
-* After 100 games, I won 5197.8119276 times
+* After 100 games, I won 65 times
 
 * This means, my guess for the probability of winning is 65%
 
@@ -303,6 +302,52 @@ class: center, middle, inverse, bigger, title-slide
 
 ---
 
+# The clueless Bayesian
+
+* I haven't seen any data
+
+* I have no clue what to believe, I think it's all a trick
+
+* I can imagine the probability of winning being any value
+
+--
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# We collect data (the same data)
+
+* You change your beliefs as you play
+
+* How do they change?
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# The clueless Bayesian
+
+* After 25 games, I won 18 times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The clueless Bayesian
+
+* After 100 games, I won 65 times
+
+* This means, my belief about the probability of winning is (best given by a graph)
+
+&lt;img src="week7_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
 # Why is this called Bayesian?
 
 * It comes from the "updating" part
@@ -319,19 +364,19 @@ class: center, middle, inverse, bigger, title-slide
 
 # Costs and benefits
 
-+ Bayesian methods can deal with over-fitting
+(+) Bayesian methods can deal with over-fitting
 
-+ Bayesian methods can work well when there's not much data
+(+) Bayesian methods can work well when there's not much data
 
-+ Bayesian methods can work well when there's you have external information you want to incorporate
+(+) Bayesian methods can work well when there's you have external information you want to incorporate
 
-+ Some evidence that this "updating" mimics how people learn
+(+) Some evidence that this "updating" mimics how people learn
 
-+ Interpretation makes more sense
+(+) Interpretation makes more sense
 
-- Strong incorrect beliefs are hard to overcome (bad bias)
+(-) Strong incorrect beliefs are hard to overcome (bad bias)
 
-- No guarantees about the true parameter
+(-) No guarantees about the true parameter
 
 ---
 
