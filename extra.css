@@ -3,6 +3,8 @@
 .darkblue {color: darkblue;}
 
 .bigger {font-size: 200%;}
+.smaller {font-size: 75%;}
+.even-smaller {font-size: 65%;}
 
 blockquote {
   display: block;

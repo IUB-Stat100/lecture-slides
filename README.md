@@ -8,7 +8,9 @@ Links to lecture slides are available here
 * [Week 4 DJM](week4_thursday.html)
 * [Week 5](week5.html)
 * [Week 6](week6.html)
-* [Week 7](week7.html)
+* [Week 7 Tuesday](week7.html)
+* [Week 7 R intro](r-intro.html)
+
 
 
 [List of concepts](concepts.pdf)
