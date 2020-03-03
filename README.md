@@ -10,6 +10,7 @@ Links to lecture slides are available here
 * [Week 6](week6.html)
 * [Week 7 Tuesday](week7.html)
 * [Week 7 R intro](r-intro.html)
+* [Week 8](week8.html)
 
 
 

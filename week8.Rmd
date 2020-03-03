@@ -1,0 +1,42 @@
+---
+title: "Week 8"
+author: "DJM"
+date: "3 March 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+
+# News discussion
+
+
+
+.center[.bigger[
+[The Southern Diet Causes High Blood Pressure](https://www.npr.org/sections/thesalt/2018/10/02/653798353/southern-diet-blamed-for-high-rates-of-hypertension-among-blacks)
+]]
+
+
+--
+
+.center[.bigger[
+
+[Does it?](https://blackgirlsguidetoweightloss.com/the-study-guide/this-is-what-white-supremacy-in-medical-research-looks-like/?fbclid=IwAR2b2S6Qgcd6dnn0cslZ-oqBXgNJGIQrejr9HsmrkOhFAkS-qWkxbe__-x8)
+
+]]
+
+
+---
+
+class: middle, center, inverse
+
+<iframe width="960" height="540" src="https://www.youtube.com/embed/1aheRpmurAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+

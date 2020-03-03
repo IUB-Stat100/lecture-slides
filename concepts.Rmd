@@ -124,3 +124,10 @@ Correlation vs. Causation
 
 Hidden common causes
 : It is difficult to determine if one thing causes another purely through observation. We need to manipulate one to watch for an effect. If we simply observe, it is hard to rule out hidden factors that may cause both to change.
+
+Bayesian
+: Using "prior" information to think about predictions and uncertainty. As we collect data, we update our existing beliefs to incorporate this new evidence into our understanding.
+
+Sampling
+: How are the data collected? Some different types of samples are the _random sample_ or the _convenience sample_.
+
