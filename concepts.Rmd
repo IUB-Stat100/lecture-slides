@@ -131,3 +131,10 @@ Bayesian
 Sampling
 : How are the data collected? Some different types of samples are the _random sample_ or the _convenience sample_.
 
+Sampling Frame
+: The collection of all possible individuals (or objects or ...) that can be selected to be part of a sample. The Census draws _every_ person in the frame (all people in the US).
+
+Confirmation bias
+: The tendency to search for, interpret, favor, and recall information in a way that confirms or strengthens one's prior personal beliefs or hypotheses.
+
+
