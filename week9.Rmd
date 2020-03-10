@@ -1,0 +1,134 @@
+---
+title: "Week 9"
+author: "DJM"
+date: "10 March 2020"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, rladies, rladies-fonts, extra.css]
+    nature:
+      beforeInit: ["macros.js", "https://platform.twitter.com/widgets.js"]
+      titleSlideClass: [center,middle, inverse, bigger]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+
+# News discussion
+
+.center[.middle[.bigger[
+[IU costs too much](https://www.idsnews.com/article/2020/02/opinion-purdue-saves-students-money-while-iu-doesnt?fbclid=IwAR3rTRZ88t1r5C5jfztS4gjWz98T1dFEIHIGb1Xxq2CPRWxuwV54dDnzmbY)
+]]]
+
+---
+
+class: inverse, center, middle
+
+# Signal and the Noise (wrapup)
+
+
+---
+
+# Climate update
+
+
+```{r, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(cowplot)
+global.climate = read_csv("https://www.ncdc.noaa.gov/cag/global/time-series/globe/land_ocean/1/1/1880-2020/data.csv?trend=true&trend_base=10&firsttrendyear=1880&lasttrendyear=2020", skip=4)
+base = global.climate$Value[global.climate$Year==1990]
+uncertainty = tibble(
+  Value = 1990:max(global.climate$Year),
+  ymin = 0:(length(Value)-1)*.02, ymax = 0:(length(Value)-1)*.05)
+global.climate = global.climate %>% mutate(Value = Value - base) 
+```
+
+```{r, fig.align='center', fig.width=14,fig.height=7, echo=FALSE}
+ggplot(global.climate, aes(Year,Value)) + 
+  ylab('deviation from 1990 (°C)') + xlab('') +
+  geom_ribbon(data = uncertainty, aes(x=Value,ymin=ymin,ymax=ymax), fill='grey70' ) +
+  geom_col(aes(fill=Value > 0)) +
+  scale_fill_brewer(palette = 'Set1') +
+  scale_x_continuous(expand = expand_scale()) +
+  theme_cowplot(26) + theme(legend.position = 'none')
+```
+
+---
+
+# Perceived trends
+
+```{r, fig.align='center', fig.width=14,fig.height=7, echo=FALSE, warning=FALSE}
+periods = global.climate %>% mutate(
+  grp = cut(Year, c(1879,1957,1968,1969,1977,1980,1997,2001,2012,2015,2020)),
+  grp2 = fct_other(grp, keep = levels(grp)[c(2,4,6,8,10)], other_level = 'other')
+)
+ggplot(global.climate, aes(Year,Value)) + 
+  ylab('deviation from 1990 (°C)') + xlab('') +
+  geom_line(size=1) +
+  coord_cartesian(xlim = c(1950,2020)) +
+  theme_cowplot(26) + theme(legend.position = 'none') +
+  geom_smooth(size=2,
+    data=filter(periods, grp2 != 'other'),
+    aes(color=grp2), method = 'lm', se = FALSE) +
+  scale_color_brewer(palette = 'Set1')
+```
+
+---
+
+# Long-term trend
+
+```{r, fig.align='center', message=FALSE, fig.width=14,fig.height=7, echo=FALSE, warning=FALSE}
+ggplot(global.climate, aes(Year,Value)) + 
+  ylab('deviation from 1990 (°C)') + xlab('') +
+  geom_line(size=2, color='purple') +
+  scale_x_continuous(expand = expand_scale()) +
+  geom_smooth(color='yellow') +
+  theme_cowplot(26) + theme(legend.position = 'none')
+```
+
+
+---
+
+## Patterns
+
+$$1, 4, 7, 10, \ldots$$
+
+--
+
+$$1, 3, 6, 10, 15, \ldots$$
+
+--
+
+$$0, 1, 1, 2, 3, 5, 8, \ldots$$
+
+--
+
+$$8, 5, 4, 9, 1, \ldots$$
+
+???
+
+* 13
+* 21
+* 13
+* 7, 6, 10, 3
+
+
+
+
+---
+
+# Forecasting wrap-up
+
+* How do we make good forecasts?
+
+* What causes us to make bad predictions?
+
+* How can you tell if predictions are good or bad?
+
+---
+
+# Important point from last week
+
+* The need to learn more (how was the survey conducted, how many, who was in the sampling frame, are the analysts trustworthy)
