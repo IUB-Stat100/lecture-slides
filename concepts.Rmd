@@ -137,4 +137,36 @@ Sampling Frame
 Confirmation bias
 : The tendency to search for, interpret, favor, and recall information in a way that confirms or strengthens one's prior personal beliefs or hypotheses.
 
+Algorithm
+: a computational workflow. A computer program or collection of mathematical formulas that take some inputs to produce outputs based on a collection of rules
+
+Mathematical model (p18)
+: an abstract representation of a real-world process. A simplified mathematical description of the world that possibly ignores some complexities
+
+Weapon of math destruction (initial definition, p31)
+: a mathematical model that posesses the following 3 features. (1) opacity: only, possibly, the users understand how the model produces predictions; (2) scale: the model has an outsize impact on large swaths of the population; and (3) damage, that impact results in negative economic, social, or other outcomes.
+
+Feedback loop (throughout)
+: a WMD often has the side effect that it's predictions lead to negative outcomes that then _induce_ the prediction. For example, the recidivism model leads to longer sentences but longer sentences tend to produce recidivism.
+
+Proxy measure (many, eg p52, p146)
+: frequently, the traits one would want to use in a model are unavailable or unmeasured, so WMDs instead use something to stand in for those traits
+
+Machine learning (p76)
+: Allowing a machine to process many examples of features and associated outcomes to find a plausible method of predicting outcomes for future examples
+
+Calibration (p110)
+: we discussed a different definition earlier in the context of weather forecasts. here the author means that data scientists turn some knobs in a model until the predictions match their beliefs. This is done without feedback that would allow them to determine if those predictions are accurate
+
+Training and Testing Data (p116)
+: training data is the information used to create the model. Testing data is the new data where you want to make predictions. Say I look at the last 10 years of IU basketball games to learn when they're likely to win. That's training data. Testing data would be the future games whose outcomes I'd like to predict.
+
+Operations research (p127)
+: A field of math/engineering/business that historically focused on optimizing things like supply chain management (how do we get the inputs our widgets need while sending out our widgets in the most efficient way possible). But the modern economy is much more of a service economy, so OR has morphed to manage the human interactions as well.
+
+False negatives and False positives (p133)
+: A hugely important idea at the moment. Suppose you take a test for COVID19. There are four outcomes (1) true positive: the test says you have it and you actually do (2) true negative: the test says you don't have it and you don't (3) false positive: test says you have it, but you have a cold (4) false negative: you have it, but test says no. (4) here can be a real problem because they send you home with no instructions to quarantine and you pass it to others. The same idea happens whenever we try to predict one of two outcomes (eg. potential criminal, bad teacher)
+
+Stratification (p162)
+: See also Simpson's paradox above. The idea is to make analyses with smaller pieces of the whole population as well as the whole. Sometimes, small slices drive the overall effect, but other slices behave differently. Sometimes, each slice and the overall population behave the same. Simpson's paradox is when all the slices go one way, but the overall average goes the opposite. Ideally, we don't want to mistake any of these situations for the other.
 
